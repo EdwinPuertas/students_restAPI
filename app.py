@@ -8,8 +8,9 @@ st_object = StudentController()
 
 
 @app.get("/")
+def read_root():
+    return {"200": "Welcome To Student Restful API"}
+
+@app.get("/student")
 async def root():
     return st_object.show()
-
-if __name__ == "__main__":
-    uvicorn.run(app)
