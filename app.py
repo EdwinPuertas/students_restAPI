@@ -8,7 +8,7 @@ st_object = StudentController()
 
 
 @app.get("/")
-def root():
+async def root():
     return st_object.show()
 
 if __name__ == "__main__":

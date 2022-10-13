@@ -72,7 +72,7 @@ class Student(object):
           :returns: sting person
           :rtype: str
         """
-        return '{"id": {0}, "name": "{1}", "surname": "{2}"}'.format(self.id, self.name, self.surname)
+        return str({"id": self.id, "name": self.name, "surname": self.surname})
 
 
 if __name__ == '__main__':
