@@ -14,3 +14,7 @@ def read_root():
 @app.get("/student")
 async def root():
     return st_object.show()
+
+
+if __name__ == "__main__":
+    uvicorn.run(app)
