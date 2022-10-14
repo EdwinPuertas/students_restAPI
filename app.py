@@ -1,5 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
+
+from logic.student import Student
 from logic.student_controller import StudentController
 
 app = FastAPI()
@@ -14,6 +16,10 @@ def read_root():
 @app.get("/student")
 async def root():
     return st_object.show()
+
+@app.post("/student/add")
+async def add(id: int, name: str, surname: str):
+    return st_object.add(Student(id=id, name=name, surname=surname))
 
 
 if __name__ == "__main__":

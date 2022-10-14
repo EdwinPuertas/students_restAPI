@@ -9,14 +9,15 @@ class StudentController(object):
 
     def __init__(self):
         self.file = '{0}{1}'.format(DIR_DATA, 'storage.json')
-        print('controller')
 
-    def add(self, student: Student = Student()) -> None:
-        # Serializing json
-        json_object = json.dumps(student, indent=4)
-        # Writing to sample.json
-        with open(self.file, "w") as outfile:
-            outfile.write(json_object)
+    def add(self, student: Student = Student()) -> str:
+        with open(self.file, 'r+') as openfile:
+            data = json.load(openfile)
+            data['students'].append(student)
+            openfile.seek(0)
+            json.dumps(data)
+        openfile.close()
+        return str(data)
 
     def show(self):
         # Opening JSON file
