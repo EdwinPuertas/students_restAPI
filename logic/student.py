@@ -72,7 +72,7 @@ class Student(object):
           :returns: sting person
           :rtype: str
         """
-        return str({"id": self.id, "name": self.name, "surname": self.surname})
+        return {"id": self.id, "name": self.name, "surname": self.surname}
 
 
 if __name__ == '__main__':

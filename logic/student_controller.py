@@ -11,13 +11,13 @@ class StudentController(object):
         self.file = '{0}{1}'.format(DIR_DATA, 'storage.json')
 
     def add(self, student: Student = Student()) -> str:
-        with open(self.file, 'r+') as openfile:
-            data = json.load(openfile)
-            data['students'].append(student)
-            openfile.seek(0)
-            json.dumps(data)
-        openfile.close()
-        return str(data)
+        with open(self.file, 'r+') as f:
+            data = json.load(f)
+            data['students'].append(student.__str__())
+            f.seek(0)
+            json.dump(data, f)
+        f.close()
+        return student.__str__()
 
     def show(self):
         # Opening JSON file

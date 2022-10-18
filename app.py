@@ -1,6 +1,5 @@
 import uvicorn
 from fastapi import FastAPI
-
 from logic.student import Student
 from logic.student_controller import StudentController
 
@@ -13,11 +12,12 @@ def read_root():
     return {"200": "Welcome To Student Restful API"}
 
 
-@app.get("/student")
+@app.get("/api/student")
 async def root():
     return st_object.show()
 
-@app.post("/student/add")
+
+@app.post("/api/student")
 async def add(id: int, name: str, surname: str):
     return st_object.add(Student(id=id, name=name, surname=surname))
 
