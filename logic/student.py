@@ -3,7 +3,7 @@ class Student(object):
     Class used to represent a Student
     """
 
-    def __init__(self, id: int = 1, name: str = 'Name', surname: str = "surname")-> object:
+    def __init__(self, id: int = 1, name: str = 'Name', surname: str = "surname") -> object:
         """ Person constructor object.
 
         :param id: id of student.
