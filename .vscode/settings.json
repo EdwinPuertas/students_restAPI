@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/92a484db-4b02-4c42-a9a5-7d697d6cecb9/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/stundentapi",
+    "appService.deploySubpath": "."
+}

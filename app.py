@@ -33,4 +33,4 @@ async def add(id: int, name: str, surname: str):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, port=33507)
+    uvicorn.run(app)
