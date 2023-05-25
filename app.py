@@ -22,17 +22,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     print('Request for index page received')
     return templates.TemplateResponse('index.html', {"request": request})
-
-
-@app.get('/favicon.ico')
-def favicon():
-    file_name = 'favicon.ico'
-    file_path = './static/' + file_name
-    return FileResponse(path=file_path, headers={'mimetype': 'image/vnd.microsoft.icon'})
 
 
 @app.post('/hello', response_class=HTMLResponse)
