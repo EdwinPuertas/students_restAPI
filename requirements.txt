@@ -1,2 +1,4 @@
-uvicorn>=0.18.3
-fastapi>=0.85.0
+fastapi
+uvicorn
+jinja2
+python-multipart
