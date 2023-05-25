@@ -14,20 +14,20 @@ templates = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
-async def index(request: Request):
+def index(request: Request):
     print('Request for index page received')
     return templates.TemplateResponse('index.html', {"request": request})
 
 
 @app.get('/favicon.ico')
-async def favicon():
+def favicon():
     file_name = 'favicon.ico'
     file_path = './static/' + file_name
     return FileResponse(path=file_path, headers={'mimetype': 'image/vnd.microsoft.icon'})
 
 
 @app.post('/hello', response_class=HTMLResponse)
-async def hello(request: Request, name: str = Form(...)):
+def hello(request: Request, name: str = Form(...)):
     if name:
         print('Request for hello page received with name=%s' % name)
         return templates.TemplateResponse('hello.html', {"request": request, 'name':name})
@@ -52,4 +52,4 @@ async def add(id: int, name: str, surname: str):
 
 
 if __name__ == "__main__":
-    uvicorn.run('app:app',  host='0.0.0.0', port=8000)
+    uvicorn.run('app:app')
