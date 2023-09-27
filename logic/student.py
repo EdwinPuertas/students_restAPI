@@ -3,11 +3,11 @@ class Student(object):
     Class used to represent a Student
     """
 
-    def __init__(self, id: int = 1, name: str = 'Name', surname: str = "surname") -> object:
+    def __init__(self, idn: int = 1, name: str = 'Name', surname: str = "surname") -> object:
         """ Person constructor object.
 
-        :param id: id of student.
-        :type id: str
+        :param idn: A unique number that uniquely identifies the student in the system.
+        :type idn: int
         :param name: name of student.
         :type name: str
         :param surname: last name of student.
@@ -15,25 +15,25 @@ class Student(object):
         :returns: Student object
         :rtype: object
         """
-        self.__id = id
+        self.__idn = idn
         self.__name = name
         self.__surname = surname
 
     @property
-    def id(self) -> int:
-        """ Returns id of the student.
-          :returns: id of student.
+    def idn(self) -> int:
+        """ Returns idn of the student.
+          :returns: idn of student.
           :rtype: int
         """
-        return self.__id
+        return str(self.__idn)
 
-    @id.setter
-    def id(self, id: int):
+    @idn.setter
+    def idn(self, val: int):
         """ The id of the student.
         :param id: id of student.
         :type: int
         """
-        self.__id = id
+        self.__idn = val
 
     @property
     def name(self) -> str:
@@ -68,15 +68,12 @@ class Student(object):
         self.__surname = surname
 
     def __str__(self):
-        """ Returns str of person.
-          :returns: sting person
-          :rtype: str
-        """
-        return {"id": self.id, "name": self.name, "surname": self.surname}
-
+        return dict(idn=self.idn, name=self.name, surname=self.surname).__str__()
 
 if __name__ == '__main__':
 
-    edwin = Student(id=73577376, name="Edwin", surname="Puertas")
+    edwin = Student(idn=23456, name="Edwin", surname="Puertas")
     print(edwin)
+    juan = Student()
+    print(juan)
 

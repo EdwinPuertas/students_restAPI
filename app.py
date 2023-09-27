@@ -33,7 +33,7 @@ def index(request: Request):
 def hello(request: Request, name: str = Form(...)):
     if name:
         print('Request for hello page received with name=%s' % name)
-        return templates.TemplateResponse('hello.html', {"request": request, 'name':name})
+        return templates.TemplateResponse('hello.html', {"request": request, 'name': name})
     else:
         print('Request for hello page received with no name or blank name -- redirecting')
         return RedirectResponse(request.url_for("index"), status_code=status.HTTP_302_FOUND)
@@ -50,8 +50,10 @@ async def root():
 
 
 @app.post("/api/student")
-async def add(id: int, name: str, surname: str):
-    return st_object.add(Student(id=id, name=name, surname=surname))
+async def add(identification: int, name: str, surname: str):
+    student_temp = Student(idn=identification , name=name, surname=surname)
+    print(student_temp)
+    return st_object.add(student_temp)
 
 
 if __name__ == "__main__":
