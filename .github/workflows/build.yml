@@ -34,10 +34,14 @@ jobs:
           version=$(grep VERSION sonar/version.py | cut -d "=" -f 2 | sed "s/[\'\" ]//g")
           echo "sonar.projectVersion=$version" >> sonar-project.properties
       - name: SonarCloud scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        uses: sonarsource/sonarcloud-github-action@<action version> # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
         with:
+          projectBaseDir:**/Backend/**,**/Frontend/**
           args: >
-            -Dsonar.verbose=false
+            -Dsonar.organization=verbanexai
+            -Dsonar.projectKey=my-VerbaNexAI_SmartlinkAnalytics
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.sources=lib/
+            -Dsonar.test.exclusions=tests_**.py/**
+            -Dsonar.tests=tests/
+            -Dsonar.verbose=true
