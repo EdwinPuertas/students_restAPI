@@ -18,7 +18,6 @@ class TestStudent(unittest.TestCase):
 
     def test_int_student(self):
         with self.assertRaises(TypeError, msg="Student must be a integer"):
-
-            self.student.idn = 123
+            self.student.idn = "123"
 if __name__ == '__main__':
     unittest.main()
