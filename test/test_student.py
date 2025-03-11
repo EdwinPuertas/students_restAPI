@@ -1,24 +1,24 @@
 import unittest
 from logic.student import Student
 
-
 class TestStudent(unittest.TestCase):
-person = Student(id=1, name='Name', surname='Surname')
 
-    def test_instance(self):
-        self.assertIsInstance(self.person, Student, "Its instance!")
+    def setUp(self):
+        self.student = Student(idn=123, name="Name", surname="SurName")
 
-    def test_id(self):
-        self.assertEqual(self.person.id, 1)
+    def test_student(self):
+        self.assertEqual(self.student.idn, 123)
+        self.assertEqual(self.student.name, "Name")
+        self.assertEqual(self.student.surname, "SurName")
 
-    def test_name(self):
-        self.assertEqual(self.person.name, "Name")
+    def test_string_student(self):
+        with self.assertRaises(TypeError, msg="Student must be a string"):
+            self.student.name = 'Name'
+            self.student.surname = 'SurName'
 
-    def test_surname(self):
-        self.assertEqual(self.person.surname, 'Surname')
+    def test_int_student(self):
+        with self.assertRaises(TypeError, msg="Student must be a integer"):
 
-    def test__str__(self):
-        self.assertEqual(self.person.__str__(), {'id': 1, 'name': 'Name', 'surname': 'Surname'})
-
+            self.student.idn = 123
 if __name__ == '__main__':
     unittest.main()
