@@ -3,7 +3,7 @@ from logic.student import Student
 
 
 class TestStudent(unittest.TestCase):
-    person = Student(id=1, name='Name', surname='Surname')
+person = Student(id=1, name='Name', surname='Surname')
 
     def test_instance(self):
         self.assertIsInstance(self.person, Student, "Its instance!")
