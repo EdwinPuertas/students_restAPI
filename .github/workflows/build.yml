@@ -8,40 +8,22 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  scan:
+  sonarqube:
+    name: SonarQube Cloud
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Setup Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.8
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install flake8 pylint bandit pytest coverage
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Run linters
-        working-directory: .
-        run: |
-          chmod +x ./run_linters.sh
-          ./run_linters.sh
-      - name: Patch project version
-        run: |
-          version=$(grep VERSION sonar/version.py | cut -d "=" -f 2 | sed "s/[\'\" ]//g")
-          echo "sonar.projectVersion=$version" >> sonar-project.properties
-      - name: SonarCloud scan
-        uses: sonarsource/sonarcloud-github-action@<action version> # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
-        with:
-          projectBaseDir:**/Backend/**,**/Frontend/**
-          args: >
-            -Dsonar.organization=verbanexai
-            -Dsonar.projectKey=my-VerbaNexAI_SmartlinkAnalytics
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.sources=lib/
-            -Dsonar.test.exclusions=tests_**.py/**
-            -Dsonar.tests=tests/
-            -Dsonar.verbose=true
+          python-version: ${{ matrix.python }}
+      - name: Install tox and any other packages
+        run: pip install tox
+      - name: Run tox
+        run: tox -e py
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
