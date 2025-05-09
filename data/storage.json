@@ -1,1 +1,32 @@
-["{'idn': '123', 'name': 'Edwin', 'surname': 'Puertas'}", "{'idn': '456', 'name': 'Juan ', 'surname': 'Perez'}"]
+[
+    {
+        "idn": 123,
+        "name": "Edwin",
+        "surname": "Puertas"
+    },
+    {
+        "idn": 456,
+        "name": "Luis",
+        "surname": "Perez"
+    },
+    {
+        "idn": 654,
+        "name": "Michael ",
+        "surname": "Jackson"
+    },
+    {
+        "idn": 444,
+        "name": "asdasd",
+        "surname": "asdasd"
+    },
+    {
+        "idn": 55,
+        "name": "dfsdf",
+        "surname": "sdfsdf"
+    },
+    {
+        "idn": 456,
+        "name": "Felipe",
+        "surname": "Perez"
+    }
+]

@@ -50,8 +50,8 @@ async def root():
 
 
 @app.post("/api/student")
-async def add(identification: int, name: str, surname: str):
-    student_temp = Student(idn=identification , name=name, surname=surname)
+async def add(idn: int, name: str, surname: str):
+    student_temp = Student(idn=idn , name=name, surname=surname)
     print(student_temp)
     return st_object.add(student_temp)
 

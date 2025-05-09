@@ -9,24 +9,19 @@ from logic.student import Student
 class StudentController(object):
 
     def __init__(self):
-        self.file = '{0}{1}'.format(DIR_DATA, 'storage.json')
+        self.file = os.path.join(DIR_DATA, 'storage.json')
 
-    def add(self, new_student: Student = Student()) -> str:
+    def add(self, new_student: Student = Student()) -> dict:
         with open(self.file, 'r+', encoding='utf-8') as f:
             data = json.load(f)
-            data.append(new_student.__str__())
+            data.append(new_student.to_dict())  # ✅ guardar como diccionario (objeto JSON)
             f.seek(0)
-            json.dump(data, f)
-        f.close()
-        return new_student
+            json.dump(data, f, indent=4)
+            f.truncate()  # elimina datos sobrantes si el nuevo json es más corto
+
+        return new_student.to_dict()
 
     def show(self):
-        # Opening JSON file
-        with open(self.file, 'r') as openfile:
-            # Reading from json file
+        with open(self.file, 'r', encoding='utf-8') as openfile:
             data = json.load(openfile)
-            # Convert the dictionary to a string
-            data_str = json.dumps(data)
-            # Print the string
-            print(ast.literal_eval(data_str))
-        return data_str
+        return data  # ✅ devolver directamente como lista de objetos

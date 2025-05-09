@@ -1,74 +1,72 @@
-class Student(object):
-    """
-    Class used to represent a Student
-    """
+class Student:
+    """Represents a student with an ID, first name, and surname."""
 
-    def __init__(self, idn: int = 1, name: str = 'Name', surname: str = "surname") -> object:
-        """ Person constructor object.
-
-        :param idn: A unique number that uniquely identifies the student in the system.
-        :type idn: int
-        :param name: name of student.
-        :type name: str
-        :param surname: last name of student.
-        :type surname: str
-        :returns: Student object
-        :rtype: object
+    def __init__(self, idn: int = 1, name: str = "name", surname: str = "surname"):
         """
-        self.__idn = idn
-        self.__name = name
-        self.__surname = surname
+        Initialize a new Student instance.
+
+        Args:
+            idn (int): The student's unique identifier.
+            name (str): The student's first name.
+            surname (str): The student's surname.
+        """
+        self._idn = idn
+        self._name = name
+        self._surname = surname
 
     @property
     def idn(self) -> int:
-        """ Returns idn of the student.
-          :returns: idn of student.
-          :rtype: int
-        """
-        return str(self.__idn)
+        """Get the student's ID."""
+        return self._idn
 
     @idn.setter
     def idn(self, val: int):
-        """ The id of the student.
-        :param id: id of student.
-        :type: int
-        """
-        self.__idn = val
+        """Set the student's ID."""
+        self._idn = val
 
     @property
     def name(self) -> str:
-        """ Returns the name of the student.
-          :returns: name of student.
-          :rtype: str
-        """
-        return self.__name
+        """Get the student's first name."""
+        return self._name
 
     @name.setter
-    def name(self, name: str):
-        """ The name of the student.
-        :param name: name of student.
-        :type: str
-        """
-        self.__name = name
+    def name(self, val: str):
+        """Set the student's first name."""
+        self._name = val
 
     @property
     def surname(self) -> str:
-        """ Returns the last name of the student.
-          :returns: last name of student.
-          :rtype: str
-        """
-        return self.__surname
+        """Get the student's surname."""
+        return self._surname
 
     @surname.setter
-    def surname(self, surname: str):
-        """ The last name of the student.
-        :param surname: last name of student.
-        :type: str
-        """
-        self.__surname = surname
+    def surname(self, val: str):
+        """Set the student's surname."""
+        self._surname = val
 
-    def __str__(self):
-        return dict(idn=self.idn, name=self.name, surname=self.surname).__str__()
+    def to_dict(self) -> dict:
+        """
+        Return a clean dictionary representation of the student.
+
+        Returns:
+            dict: A dictionary with keys 'idn', 'name', and 'surname'.
+        """
+        return {
+            'idn': self.idn,
+            'name': self.name,
+            'surname': self.surname
+        }
+
+    def __str__(self) -> str:
+        """
+        Return a string representation of the student.
+
+        Returns:
+            str: A stringified clean dictionary of the student's attributes.
+        """
+        return str(self.to_dict())
+
+
 
 if __name__ == '__main__':
 
